@@ -1,4 +1,17 @@
 # Macaw: An Extensible Conversational Information Seeking Platform
+
+- - -
+Every time after modified the code, run
+```
+sudo /usr/bin/python3 setup.py install
+```
+Then run
+```
+/usr/bin/python3 live_main.py
+```
+to run macaw.
+- - -
+
 Conversational information seeking (CIS) has been recognized as a major emerging research area in information retrieval.
 Such research will require data and tools, to allow the implementation and study of conversational systems. Macaw is
 an open-source framework with a modular architecture for CIS research. Macaw supports *multi-turn*, *multi-modal*, and 
