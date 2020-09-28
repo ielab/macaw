@@ -57,7 +57,7 @@ class ConvQA(CIS):
 
 
 if __name__ == '__main__':
-    basic_params = {'timeout': 15,  # timeout is in terms of second.
+    basic_params = {'timeout': 200,  # timeout is in terms of second.
                     'mode': 'live',  # mode can be either live or exp.
                     'logger': Logger({})}  # for logging into file, pass the filepath to the Logger class.
 
@@ -68,22 +68,23 @@ if __name__ == '__main__':
                  'interaction_db_name': 'macaw_test'}
 
     # These are interface parameters. They are interface specific.
-    interface_params = {'interface': 'telegram',  # interface can be 'telegram' or 'stdio' for live mode, and 'fileio'
+    interface_params = {'interface': 'stdio',  # interface can be 'telegram' or 'stdio' for live mode, and 'fileio'
                                                   # for exp mode.
                         'bot_token': 'YOUR_TELECGRAM_BOT_TOKEN',  # Telegram bot token.
                         'asr_model': 'google',  # The API used for speech recognition.
                         'asg_model': 'google',  # The API used for speech generation.
-                        'google-speech-to-text-credential-file': 'YOUR_GOOGLE_CREDENTIAL_FILE'}
+                        'google-speech-to-text-credential-file': '/home/ielab/macaw/cred.json'}
 
     # These are parameters used by the retrieval model.
     retrieval_params = {'query_generation': 'simple',  # the model that generates a query from a conversation history.
-                        'use_coref': True,  # True, if query generator can use coreference resolution, otherwise False.
-                        'search_engine': 'bing',  # the search engine. It can be either 'indri' or 'bing'.
-                        'bing_key': 'YOUR_BING_SUBSCRIPTION_KEY',  # Bing API key
-                        'search_engine_path': 'PATH_TO_INDRI',  # The path to the indri toolkit.
+                        'use_coref': False,  # True, if query generator can use coreference resolution, otherwise False.
+                        'search_engine': 'pyserini',  # the search engine. It can be 'indri' or 'bing' or 'pyserini'.
+                        'bing_key': 'a7863c67a29744b4b4cfb478658ef2e2',  # Bing API key
+                        'search_engine_path': '/home/ielab/macaw/indri-5.11',  # The path to the indri toolkit.
                         'col_index': 'PATH_TO_INDRI_INDEX',  # The path to the indri index.
+                        'pyserini_index': '/home/ielab/index/grdc_index_07_08',  # The path to the anserini index
                         'col_text_format': 'trectext',  # collection text format. Standard 'trectext' is only supported.
-                        'results_requested': 3}  # Maximum number of docs that should be retrieved by search engine.
+                        'results_requested': 5}  # Maximum number of docs that should be retrieved by search engine.
     # Note: If you want to have a re-ranking model (e.g., learning to rank), you just need to simply extend the class
     # core.retrieval.search_engine.ReRanker and implement the method 'rerank'. Then simply add a 'reranker' parameter to
     # retrieval_params that points to an instance of your favorite ReRanker class. If there is a 'reranker' parameter in
@@ -92,9 +93,9 @@ if __name__ == '__main__':
 
     # These are parameters used by the machine reading comprehension model.
     mrc_params = {'mrc': 'drqa',  # MRC model.
-                  'mrc_model_path': 'PATH_TO_PRETRAINED_MRC_MODEL',  # The path to the model parameters.
-                  'mrc_path': 'PATH_TO_MRC_DIRECTORY',  # The path to the model toolkit.
-                  'corenlp_path': 'PATH_TO_STANFORD_CORE_NLP_DIRECTORY',  # The path to the corenlp toolkit.
+                  'mrc_model_path': '/home/ielab/macaw/DrQA/data/reader/multitask.mdl',  # The path to the model parameters.
+                  'mrc_path': '/home/ielab/macaw/DrQA/drqa',  # The path to the model toolkit.
+                  'corenlp_path': '/home/ielab/macaw/stanford-corenlp-full-2017-06-09',  # The path to the corenlp toolkit.
                   'qa_results_requested': 3}  # The number of candidate answers returned by the MRC model.
 
     params = {**basic_params, **db_params, **interface_params, **retrieval_params, **mrc_params}

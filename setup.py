@@ -9,5 +9,5 @@ setup(
     license='MIT',
     author='Hamed Zamani',
     author_email='hazamani@microsoft.com',
-    description='An extensible framework for conversational information seeking research'
+    description='An extensible framework for conversational information seeking research', install_requires=['pyserini']
 )

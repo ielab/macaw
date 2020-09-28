@@ -95,16 +95,20 @@ class RequestDispatcher:
             command = conv_list[0].text.split(' ')[0]
             return self.execute_command(conv_list, command)
 
-        action_processes = []
+        # action_processes = []
         manager = multiprocessing.Manager()
         action_results = manager.dict()
         for action in self.params['actions']:
-            p = multiprocessing.Process(target=actions.run_action, args=[action, conv_list.copy(), self.params, action_results])
-            action_processes.append(p)
-            p.start()
-
-        for p in action_processes:
-            p.join()
+            action_result = actions.run_action(action, conv_list.copy(), self.params, action_results)
+            # print("action: " + action + " res: ")
+            # print(res)
+            action_results[action] = action_result[action]
+        #     p = multiprocessing.Process(target=actions.run_action, args=(action, conv_list.copy(), self.params, action_results))
+        #     p.start()
+        #     action_processes.append(p)
+        #
+        # for p in action_processes:
+        #     p.join()
 
         candidate_outputs = dict()
         for key in action_results:

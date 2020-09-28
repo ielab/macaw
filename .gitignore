@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# components
+DrQA/
+cred.json
+data/db/
+indri-5.11/
+pyndri/
+stanford-corenlp-full-2017-06-09/
+.idea/
