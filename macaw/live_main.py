@@ -57,7 +57,7 @@ class ConvQA(CIS):
 
 
 if __name__ == '__main__':
-    basic_params = {'timeout': 200,  # timeout is in terms of second.
+    basic_params = {'timeout': 20,  # timeout is in terms of second.
                     'mode': 'live',  # mode can be either live or exp.
                     'logger': Logger({})}  # for logging into file, pass the filepath to the Logger class.
 
@@ -68,9 +68,9 @@ if __name__ == '__main__':
                  'interaction_db_name': 'macaw_test'}
 
     # These are interface parameters. They are interface specific.
-    interface_params = {'interface': 'stdio',  # interface can be 'telegram' or 'stdio' for live mode, and 'fileio'
+    interface_params = {'interface': 'telegram',  # interface can be 'telegram' or 'stdio' for live mode, and 'fileio'
                                                   # for exp mode.
-                        'bot_token': 'YOUR_TELECGRAM_BOT_TOKEN',  # Telegram bot token.
+                        'bot_token': '1287272175:AAFLd31wayTpgt9Hr9A1Izc-kRL6VR2syOw',  # Telegram bot token.
                         'asr_model': 'google',  # The API used for speech recognition.
                         'asg_model': 'google',  # The API used for speech generation.
                         'google-speech-to-text-credential-file': '/home/ielab/macaw/cred.json'}
