@@ -76,9 +76,10 @@ class QAAction(Action):
         doc = ''
         for i in range(len(doc_list)):
             doc = doc_list[i].text
+            url = doc_list[i].web_url
             if len(doc.strip()) > 0:
                 break
-        return params['actions']['qa'].get_results(conv_list, doc)
+        return params['actions']['qa'].get_results(conv_list, doc, url)
 
 
 def run_action(action, conv_list, params, return_dict):

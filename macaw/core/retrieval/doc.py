@@ -10,7 +10,7 @@ import justext
 
 
 class Document:
-    def __init__(self, id, title, text, score):
+    def __init__(self, id, title, text, score, web_url='', pdf_url=''):
         """
             A simple class representing a document for retrieval.
         Args:
@@ -22,6 +22,8 @@ class Document:
         self.id = id
         self.title = title
         self.text = text
+        self.web_url = web_url
+        self.pdf_url = pdf_url
         self.score = score
 
 

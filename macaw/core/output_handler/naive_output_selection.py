@@ -81,16 +81,16 @@ class NaiveOutputProcessing(OutputProcessing):
         elif selected_action == 'qa':
             msg_info['msg_type'] = conv[0].msg_info['msg_type']
             msg_info['msg_creator'] = 'qa'
-            text = candidate_outputs['qa'][0].text
+            text = f'{candidate_outputs["qa"][0].text}\nSource: {candidate_outputs["qa"][0].web_url}'
         elif selected_action == 'retrieval':
             msg_info['msg_type'] = 'options'
             msg_info['msg_creator'] = 'retrieval'
             text = 'Retrieved document list (click to see the document content):'
-            msg_info['options'] = [(output.title, '#get_doc ' + output.id, output.score) for output in candidate_outputs['retrieval']]
+            msg_info['options'] = [(output.title, '#get_doc ' + output.id, output.score, output.web_url) for output in candidate_outputs['retrieval']]
         elif selected_action == '#get_doc':
             msg_info['msg_type'] = 'text'
             msg_info['msg_creator'] = '#get_doc'
-            text = candidate_outputs['#get_doc'][0].text
+            text = f'{candidate_outputs["#get_doc"][0].text}\nSource: {candidate_outputs["#get_doc"][0].web_url}'
         else:
             raise Exception('The candidate output key is not familiar!')
         timestamp = util.current_time_in_milliseconds()

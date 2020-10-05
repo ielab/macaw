@@ -59,7 +59,7 @@ class DrQA(MRC):
         drqa.tokenizers.set_default('corenlp_classpath', os.path.join(self.params['corenlp_path'], '*'))
         self.predictor = Predictor(self.params['mrc_model_path'], tokenizer='simple', num_workers=0, normalize=False)
 
-    def get_results(self, conv_list, doc):
+    def get_results(self, conv_list, doc, url=''):
         """
         This method returns the answers to the question.
 
@@ -76,7 +76,7 @@ class DrQA(MRC):
         predictions = self.predictor.predict(doc, q, None, self.params['qa_results_requested'])
         results = []
         for i, p in enumerate(predictions, 1):
-            results.append(Document(None, None, p[0], p[1]))
+            results.append(Document(None, None, p[0], p[1], web_url=url, pdf_url=''))
         return results
 
 

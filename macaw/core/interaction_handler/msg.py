@@ -6,7 +6,7 @@ Authors: Hamed Zamani (hazamani@microsoft.com)
 
 
 class Message:
-    def __init__(self, user_interface, user_id, user_info, msg_info, text, timestamp):
+    def __init__(self, user_interface, user_id, user_info, msg_info, text, timestamp, pdf_url='', web_url=''):
         """
         An object for input and output Message.
 
@@ -24,6 +24,8 @@ class Message:
         self.text = text
         self.timestamp = timestamp
         self.user_interface = user_interface
+        self.pdf_url = pdf_url
+        self.web_url = web_url
 
     @classmethod
     def from_dict(cls, msg_dict):
@@ -41,4 +43,6 @@ class Message:
         msg_info = msg_dict['msg_info'] if 'msg_info' in msg_dict else None
         text = msg_dict['text'] if 'text' in msg_dict else None
         timestamp = msg_dict['timestamp'] if 'timestamp' in msg_dict else None
-        return cls(user_interface, user_id, user_info, msg_info, text, timestamp)
+        pdf_url = msg_dict['pdf_url'] if 'pdf_url' in msg_dict else ''
+        web_url = msg_dict['web_url'] if 'web_url' in msg_dict else ''
+        return cls(user_interface, user_id, user_info, msg_info, text, timestamp, pdf_url, web_url)

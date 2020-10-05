@@ -31,6 +31,8 @@ class Pyserini(Retrieval):
     def get_doc_from_index(self, doc_id):
         doc = self.searcher.doc(doc_id)
         title = doc.get('report_title')
+        pdf_url = doc.get('pdf_url')
+        web_url = doc.get('web_url')
         contents = doc.contents()
-        d = Document(doc_id, title, contents, 0.)
+        d = Document(doc_id, title, contents, 0., web_url, pdf_url)
         return [d]

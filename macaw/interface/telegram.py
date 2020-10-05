@@ -102,6 +102,8 @@ class TelegramBot(Interface):
                           user_info=user_info,
                           msg_info=msg_info,
                           text=text,
+                          pdf_url=update.message.pdf_url,
+                          web_url=update.message.web_url,
                           timestamp=util.current_time_in_milliseconds())
             output = self.params['live_request_handler'](msg)
             self.result_presentation(output, {'update': update})
@@ -124,6 +126,8 @@ class TelegramBot(Interface):
                           user_info=user_info,
                           msg_info=msg_info,
                           text=update.callback_query.data,
+                          pdf_url=update.message.pdf_url,
+                          web_url=update.message.web_url,
                           timestamp=util.current_time_in_milliseconds())
             output = self.params['live_request_handler'](msg)
             self.result_presentation(output, {'update': update})
@@ -140,7 +144,7 @@ class TelegramBot(Interface):
                 if update.message is not None:
                     update.message.reply_text(response_msg.text[:self.MAX_MSG_LEN])
                 elif update.callback_query.message is not None:
-                    update.callback_query.message.reply_text(response_msg.text[:self.MAX_MSG_LEN])
+                    update.callback_query.message.reply_text(f'{response_msg.text}\nSource: {response_msg.web_url}'[:self.MAX_MSG_LEN])
             elif response_msg.msg_info['msg_type'] == 'voice':
                 ogg_file_name = self.params['asg'].text_to_speech(response_msg.text[:self.MAX_MSG_LEN])
                 self.updater.bot.send_voice(chat_id=update.message.chat.id, voice=open(ogg_file_name, 'rb'))

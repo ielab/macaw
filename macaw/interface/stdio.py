@@ -35,6 +35,8 @@ class StdioInterface(Interface):
                               user_info=user_info,
                               msg_info=msg_info,
                               text=request,
+                              pdf_url='',
+                              web_url='',
                               timestamp=util.current_time_in_milliseconds())
                 output = self.params['live_request_handler'](msg)
                 self.result_presentation(output, {})
@@ -46,7 +48,7 @@ class StdioInterface(Interface):
             print('THE RESPONSE STARTS')
             print('----------------------------------------------------------------------')
             if response_msg.msg_info['msg_type'] == 'text':
-                print(response_msg.text)
+                print(f'{response_msg.text}')
             elif response_msg.msg_info['msg_type'] == 'options':
                 for (option_text, option_data, output_score) in response_msg.msg_info['options']:
                     print(option_data, ' | ', option_text)
