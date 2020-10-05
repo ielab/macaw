@@ -26,7 +26,7 @@ class MRC(ABC):
         self.params = params
 
     @abstractmethod
-    def get_results(self, conv_list, doc):
+    def get_results(self, conv_list, doc, url=''):
         """
             This method is called to get the answer(s) to a question.
 

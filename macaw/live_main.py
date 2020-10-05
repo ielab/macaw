@@ -70,7 +70,7 @@ if __name__ == '__main__':
     # These are interface parameters. They are interface specific.
     interface_params = {'interface': 'telegram',  # interface can be 'telegram' or 'stdio' for live mode, and 'fileio'
                                                   # for exp mode.
-                        'bot_token': '000',  # Telegram bot token.
+                        'bot_token': '1287272175:AAFLd31wayTpgt9Hr9A1Izc-kRL6VR2syOw',  # Telegram bot token.
                         'asr_model': 'google',  # The API used for speech recognition.
                         'asg_model': 'google',  # The API used for speech generation.
                         'google-speech-to-text-credential-file': '/home/ielab/macaw/cred.json'}
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     retrieval_params = {'query_generation': 'simple',  # the model that generates a query from a conversation history.
                         'use_coref': False,  # True, if query generator can use coreference resolution, otherwise False.
                         'search_engine': 'pyserini',  # the search engine. It can be 'indri' or 'bing' or 'pyserini'.
-                        'bing_key': '000',  # Bing API key
+                        'bing_key': 'a7863c67a29744b4b4cfb478658ef2e2',  # Bing API key
                         'search_engine_path': '/home/ielab/macaw/indri-5.11',  # The path to the indri toolkit.
                         'col_index': 'PATH_TO_INDRI_INDEX',  # The path to the indri index.
                         'pyserini_index': '/home/ielab/index/grdc_index_07_08',  # The path to the anserini index
