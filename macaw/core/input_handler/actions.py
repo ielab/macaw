@@ -74,6 +74,7 @@ class QAAction(Action):
 
         doc_list = RetrievalAction.run(conv_list, params)
         doc = ''
+        url = ''
         for i in range(len(doc_list)):
             doc = doc_list[i].text
             url = doc_list[i].web_url
