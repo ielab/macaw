@@ -98,17 +98,25 @@ class RequestDispatcher:
         # action_processes = []
         manager = multiprocessing.Manager()
         action_results = manager.dict()
-        for action in self.params['actions']:
-            action_result = actions.run_action(action, conv_list.copy(), self.params, action_results)
-            # print("action: " + action + " res: ")
-            # print(res)
-            action_results[action] = action_result[action]
-        #     p = multiprocessing.Process(target=actions.run_action, args=(action, conv_list.copy(), self.params, action_results))
-        #     p.start()
-        #     action_processes.append(p)
-        #
-        # for p in action_processes:
-        #     p.join()
+        intent = conv_list[0].text.split(':')[0]
+        if intent == 'Search':
+            action_result = actions.run_action('retrieval', conv_list.copy(), self.params, action_results)
+            action_results['retrieval'] = action_result['retrieval']
+        elif intent == 'QA':
+            action_result = actions.run_action('qa', conv_list.copy(), self.params, action_results)
+            action_results['qa'] = action_result['qa']
+        else:
+            for action in self.params['actions']:
+                action_result = actions.run_action(action, conv_list.copy(), self.params, action_results)
+                # print("action: " + action + " res: ")
+                # print(res)
+                action_results[action] = action_result[action]
+            #     p = multiprocessing.Process(target=actions.run_action, args=(action, conv_list.copy(), self.params, action_results))
+            #     p.start()
+            #     action_processes.append(p)
+            #
+            # for p in action_processes:
+            #     p.join()
 
         candidate_outputs = dict()
         for key in action_results:
