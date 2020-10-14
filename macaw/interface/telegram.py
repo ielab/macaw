@@ -148,7 +148,7 @@ class TelegramBot(Interface):
                 os.remove(ogg_file_name)  # removing audio files for privacy reasons.
             elif response_msg.msg_info['msg_type'] == 'options':
                 keyboard = [[InlineKeyboardButton(option_text[:self.MAX_OPTION_LEN],
-                                                  callback_data=urllib.parse.unquote(option_data), url=output_url)]
+                                                  callback_data=urllib.parse.unquote(option_data))]
                             for (option_text, option_data, output_score, output_url) in response_msg.msg_info['options']]
                 reply_markup = InlineKeyboardMarkup(keyboard)
                 update.message.reply_text(response_msg.text[:self.MAX_MSG_LEN], reply_markup=reply_markup)
