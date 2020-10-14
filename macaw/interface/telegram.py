@@ -52,8 +52,7 @@ class TelegramBot(Interface):
 
     def start(self, update, context):
         """Send a message when the command /start is issued."""
-        update.message.reply_text('Hi, welcome to Macaw! Macaw is an open-source extensible framework for '
-                                  'conversational information seeking. Visit: https://github.com/microsoft/macaw')
+        update.message.reply_text('Hi, welcome to AgAsk! AgAsk is an open-source conversational question answering chatbot for your Ag-related questions. Visit: http://ielab.io/projects/agask.html')
 
     def help(self, update, context):
         """Send a message when the command /help is issued."""
