@@ -82,7 +82,7 @@ if __name__ == '__main__':
                         'bing_key': '000',  # Bing API key
                         'search_engine_path': '/home/ielab/macaw/indri-5.11',  # The path to the indri toolkit.
                         'col_index': 'PATH_TO_INDRI_INDEX',  # The path to the indri index.
-                        'pyserini_index': '/home/ielab/index/grdc_index_07_08',  # The path to the anserini index
+                        'pyserini_index': '/home/ielab/index/grdc_passage_10_14',  # The path to the anserini index
                         'col_text_format': 'trectext',  # collection text format. Standard 'trectext' is only supported.
                         'results_requested': 5}  # Maximum number of docs that should be retrieved by search engine.
     # Note: If you want to have a re-ranking model (e.g., learning to rank), you just need to simply extend the class
