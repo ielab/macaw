@@ -147,11 +147,13 @@ class TelegramBot(Interface):
                 self.updater.bot.send_voice(chat_id=update.message.chat.id, voice=open(ogg_file_name, 'rb'))
                 os.remove(ogg_file_name)  # removing audio files for privacy reasons.
             elif response_msg.msg_info['msg_type'] == 'options':
-                keyboard = [[InlineKeyboardButton(option_text[:self.MAX_OPTION_LEN],
-                                                  callback_data=urllib.parse.unquote(option_data))]
-                            for (option_text, option_data, output_score, output_url) in response_msg.msg_info['options']]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                update.message.reply_text(response_msg.text[:self.MAX_MSG_LEN], reply_markup=reply_markup)
+                for (option_title, option_text, option_data, output_score, output_url) in response_msg.msg_info['options']:
+                    update.message.reply_text(f'{option_title}\n{option_text}\nSource: {output_url}')
+                # keyboard = [[InlineKeyboardButton(option_text[:self.MAX_OPTION_LEN],
+                #                                   callback_data=urllib.parse.unquote(option_data))]
+                #             for (option_title, option_text, option_data, output_score, output_url) in response_msg.msg_info['options']]
+                # reply_markup = InlineKeyboardMarkup(keyboard)
+                # update.message.reply_text(response_msg.text[:self.MAX_MSG_LEN], reply_markup=reply_markup)
             elif response_msg.msg_info['msg_type'] == 'error':
                 error_msg = 'ERROR: NO RESULT!'
                 if update.message is not None:
